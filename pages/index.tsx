@@ -7,8 +7,8 @@ import HomePage from "../components/template/homePage"
 import { ConvertProductDataForCart } from "../util/function"
 
 const Home = () => {
-  const i = inventory.products
-  const products = i.map(ConvertProductDataForCart)
+  const products = inventory.products
+  // const products = i.map(ConvertProductDataForCart)
 
   return (
     <div>

@@ -6,7 +6,7 @@ import { useState } from "react"
 //hooks
 import { usePayment } from "../util/hooks/usePayment"
 //typescript
-import { IProductCart } from "../typescript"
+import { IProduct } from "../typescript"
 
 declare type ScrollBehavior = "inside" | "outside";
 
@@ -18,44 +18,9 @@ import {
 import { AiOutlineMessage, AiOutlineShoppingCart } from "react-icons/ai";
 
 
-interface Itest {
-  cartCount: string
-}
-
-const Test = ({ cartCount }: Itest) =>
-  <IconButton
-    aria-label="label"
-    size="md"
-    isRound
-    ml={8}
-    bg="purple.50"
-    icon={
-      <>
-        <AiOutlineShoppingCart />
-        <chakra.span
-          pos="absolute"
-          top="-1px"
-          right="-1px"
-          px={2}
-          py={1}
-          fontSize="xs"
-          fontWeight="bold"
-          lineHeight="none"
-          color="red.100"
-          transform="translate(50%,-50%)"
-          bg="red.600"
-          rounded="full"
-        >
-          {cartCount}
-        </chakra.span>
-      </>
-    }
-  />
-
-
 interface IModal {
   children: React.ReactNode
-  product: IProductCart
+  product: IProduct
 }
 
 const NModal = ({ children, product }: IModal) => {

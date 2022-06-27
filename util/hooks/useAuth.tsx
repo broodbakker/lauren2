@@ -19,12 +19,10 @@ export const useAuth = () => {
         return res.json()
       })
         .then(data => {
-          console.log(data)
           setError(null)
           setData(data)
         })
         .catch(err => {
-          console.log(err.message)
           setError(err.message)
           setData(null)
         })

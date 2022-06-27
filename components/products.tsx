@@ -1,13 +1,13 @@
 import Product from "./product"
 //typescript
-import { IProductCart } from "../typescript"
+import { IProduct } from "../typescript"
 
 import {
   SimpleGrid
 } from '@chakra-ui/react';
 
 interface IProducts {
-  products: IProductCart[]
+  products: IProduct[]
 }
 
 export const Products = ({ products }: IProducts) => {

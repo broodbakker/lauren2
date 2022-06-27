@@ -22,7 +22,6 @@ const ConvertProductDataForCart = ({ name, id, price, image, currency, descripti
 
 
 exports.handler = async (event) => {
-  console.log("test")
 
   const url = `${process.env.URL}/content/products.json`
 
@@ -45,11 +44,8 @@ exports.handler = async (event) => {
 
   let line_items
   try {
-    console.log("line_items", line_items)
 
     line_items = validateCartItems(inventory, product)
-
-    console.log("line_items", line_items)
   } catch (error) {
 
     return {
@@ -75,7 +71,6 @@ exports.handler = async (event) => {
       line_items
     })
   } catch (error) {
-    console.log("line_itemserror", error);
     return {
       statusCode: 500,
       body: JSON.stringify({

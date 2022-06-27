@@ -6,8 +6,7 @@ import inventory from "../public/content/products.json"
 import { ConvertProductDataForCart } from "../util/function"
 
 const Winkel = () => {
-  const i = inventory.products
-  const products = i.map(ConvertProductDataForCart)
+  const products = inventory.products
   return (
     <div>
       <WinkelPage products={products} category="paarden" />

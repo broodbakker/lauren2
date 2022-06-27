@@ -36,6 +36,10 @@ import { IoHome } from "react-icons/io5";
 
 import { ImGift } from "react-icons/im";
 
+import { FcBusinesswoman, FcHome } from "react-icons/fc"
+
+import { GiHorseHead } from "react-icons/gi"
+
 
 export const Navbar = () => {
   const auth = useAuth();
@@ -225,7 +229,7 @@ const DesktopNav = () => {
                     fontSize={'sm'}
                     fontWeight={600}
                     colorScheme="pink"
-                    leftIcon={<IoHome />}
+                    leftIcon={navItem.icon}
                     variant='ghost'>
                     {navItem.label}
                   </Button>
@@ -236,7 +240,7 @@ const DesktopNav = () => {
                   fontSize={'sm'}
                   fontWeight={400}
                   variant='ghost'
-                  leftIcon={<ImGift />}
+                  leftIcon={navItem.icon}
                   cursor="pointer"
 
                 >
@@ -271,7 +275,7 @@ const DesktopNav = () => {
   );
 };
 
-const DesktopSubNav = ({ label, href, subLabel }: NavItem1) => {
+const DesktopSubNav = ({ label, href, subLabel, icon }: NavItem1) => {
   return (
     <NextLink href={href}>
       <Link
@@ -282,12 +286,14 @@ const DesktopSubNav = ({ label, href, subLabel }: NavItem1) => {
         _hover={{ bg: useColorModeValue('pink.50', 'gray.900') }}>
         <Stack direction={'row'} align={'center'}>
           <Box>
-            <Text
-              transition={'all .3s ease'}
-              _groupHover={{ color: 'pink.400' }}
-              fontWeight={500}>
-              {label}
+
+            <HStack  transition={'all .3s ease'}
+              _groupHover={{ color: 'pink.400' }}>
+          {icon}
+            <Text  fontWeight={500}>
+            {label}
             </Text>
+            </HStack>
             <Text fontSize={'sm'}>{subLabel}</Text>
           </Box>
           <Flex
@@ -388,43 +394,51 @@ interface NavItem {
   subLabel?: string;
   children?: Array<NavItem1>;
   href?: string;
+  icon: any
 }
 
 interface NavItem1 {
   label: string;
   subLabel?: string;
   href: string;
+  icon: any
 }
 
 const NAV_ITEMS: Array<NavItem> = [
   {
     label: 'Thuis',
-    href: "/"
+    href: "/",
+    icon: <FcHome />
   },
   {
     label: 'Mijn winkel',
+    icon: <ImGift />,
     children: [
       {
         label: 'Paarden',
         subLabel: 'Alle paarden',
         href: '/w/paarden',
+        icon: <GiHorseHead />
       },
       {
         label: 'Dekjes',
         subLabel: 'Alle dekjes',
         href: '/w/dekjes',
+        icon: <IoHome />
       },
       {
         label: 'pony',
         subLabel: 'Alle sprongen',
         href: '/w/stallen',
+        icon: <IoHome />
       },
 
     ],
   },
   {
     label: 'Over Mij',
-    href: "/over-mij"
+    href: "/over-mij",
+    icon: <FcBusinesswoman />
   },
 
 ];

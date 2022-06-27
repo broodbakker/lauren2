@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
+import { useRouter } from 'next/router'
 //typescript
-import { IProductCart } from "../typescript"
+import { IProduct } from "../typescript"
 import {
   Text,
   Stack,
@@ -20,10 +21,13 @@ import {
 import { Products } from "./products"
 
 interface IPagination {
-  products: IProductCart[]
+  products: IProduct[]
 }
 
 export const Pagination = ({ products }: IPagination) => {
+
+  console.log("products", products)
+  const router = useRouter()
 
   // constants
   const outerLimit = 2;
@@ -46,12 +50,11 @@ export const Pagination = ({ products }: IPagination) => {
       inner: innerLimit
     },
     initialState: {
-      pageSize: 5,
+      pageSize: 1,
       isDisabled: false,
       currentPage: 1
     }
   });
-  // effects
   useEffect(() => {
   }, [currentPage, pageSize, offset]);
 
@@ -59,7 +62,10 @@ export const Pagination = ({ products }: IPagination) => {
   const handlePageChange = (nextPage: number): void => {
     // -> request new data using the page number
     setCurrentPage(nextPage);
-    console.log("request new data with ->", nextPage);
+
+    router.push(`/w/${products[0].category}/${nextPage}`)
+
+
   };
   return (
     <ChakraProvider>
@@ -83,11 +89,8 @@ export const Pagination = ({ products }: IPagination) => {
                   bg: "purple.100"
                 }}
                 bg="purple.200"
-                onClick={() =>
-                  console.log(
-                    "Im executing my own function along with Previous component functionality"
-                  )
-                }
+                borderRadius='0'
+                borderLeftRadius="4"
               >
                 <Text>Previous</Text>
               </PaginationPrevious>
@@ -96,11 +99,6 @@ export const Pagination = ({ products }: IPagination) => {
                 align="center"
                 separator={
                   <PaginationSeparator
-                    onClick={() =>
-                      console.log(
-                        "Im executing my own function along with Separator component functionality"
-                      )
-                    }
                     bg="blue.300"
                     fontSize="sm"
                     w={7}
@@ -112,18 +110,14 @@ export const Pagination = ({ products }: IPagination) => {
                   <PaginationPage
                     w={7}
                     color="white"
-                    bg="red.300"
+                    bg="purple.500"
                     key={`pagination_page_${page}`}
                     page={page}
-                    onClick={() =>
-                      console.log(
-                        "Im executing my own function along with Page component functionality"
-                      )
-                    }
                     fontSize="sm"
                     _hover={{
                       bg: "purple.300"
                     }}
+                    borderRadius='2'
                     _current={{
                       bg: "purple.300",
                       fontSize: "sm",
@@ -137,11 +131,8 @@ export const Pagination = ({ products }: IPagination) => {
                   bg: "purple.200"
                 }}
                 bg="purple.100"
-                onClick={() =>
-                  console.log(
-                    "Im executing my own function along with Next component functionality"
-                  )
-                }
+                borderRadius='0'
+                borderRightRadius="4"
               >
                 <Text>Next</Text>
               </PaginationNext>

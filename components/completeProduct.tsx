@@ -1,8 +1,8 @@
 import { useState, useEffect, Dispatch, SetStateAction } from "react"
 //typescript
-import { IProductCart } from "../typescript"
+import { IProduct } from "../typescript"
 //function
-import { formatPrice } from "../util/function"
+import { formatPrice, ConvertProductDataForCart } from "../util/function"
 //hooks
 import { usePayment } from "../util/hooks/usePayment"
 
@@ -14,12 +14,11 @@ import {
   Stack,
   Text,
   useBreakpointValue, HStack, Input,
-  Box, useNumberInput,
-  AspectRatio
+  Box, useNumberInput
 } from '@chakra-ui/react';
 
 interface ICompleteProduct {
-  product: IProductCart
+  product: IProduct
 }
 
 interface IHookUsage {
@@ -41,11 +40,7 @@ function HookUsage({ setAmount }: IHookUsage) {
   const input = getInputProps()
 
   useEffect(() => {
-
-
     const value = input["aria-valuetext"] as string
-
-
     setAmount(parseInt(value))
 
   }, [input, setAmount]);
@@ -66,11 +61,10 @@ const CompleteProduct = ({ product }: ICompleteProduct) => {
   const [addedProduct, setHasAddedProduct] = useState({ quantity: 0, hasAdded: false })
 
   const handleClick = () => {
-    cart.addItem(product)
+    cart.addItem(ConvertProductDataForCart(product))
     cart.setItemQuantity(product.id, amount)
     setHasAddedProduct({ quantity: amount, hasAdded: true })
   }
-
 
   useEffect(() => {
     if (addedProduct.hasAdded) {
@@ -84,7 +78,6 @@ const CompleteProduct = ({ product }: ICompleteProduct) => {
   return (<CompleteProductView product={product} handleClick={handleClick} setAmount={setAmount} addedProduct={addedProduct} />)
 }
 
-
 interface ICompleteProductView extends ICompleteProduct {
   setAmount: Dispatch<SetStateAction<number>>
   handleClick: () => void
@@ -94,13 +87,11 @@ interface ICompleteProductView extends ICompleteProduct {
   }
 }
 
-
-
 const CompleteProductView = ({ product, setAmount, handleClick, addedProduct }: ICompleteProductView) => {
   return (
     <Stack minH={'50vh'} direction={{ base: 'column', md: 'row' }} mt="10" >
       <Flex flex={1}>
-        <Test></Test>
+        <Images images={product.image} />
       </Flex>
       <Flex p={[0, 4, 8]} flex={1} align={'center'} justify={'center'} >
         <Stack spacing={6} w={'full'} maxW={'lg'}>
@@ -173,12 +164,17 @@ const CompleteProductView = ({ product, setAmount, handleClick, addedProduct }: 
   );
 }
 
-const Test = () => {
+
+interface Images {
+  images: string[]
+}
+
+const Images = ({ images }: Images) => {
   const arrowStyles = {
     cursor: "pointer",
-    pos: "absolute",
+
     top: "50%",
-    w: "auto",
+    width: "auto",
     mt: "-22px",
     p: "16px",
     color: "white",
@@ -186,31 +182,14 @@ const Test = () => {
     fontSize: "18px",
     transition: "0.6s ease",
     borderRadius: "0 3px 3px 0",
-    userSelect: "none",
     _hover: {
       opacity: 0.8,
       bg: "black",
     },
   };
-  const slides = [
-    {
-      img: "https://images.pexels.com/photos/2599537/pexels-photo-2599537.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-    {
-      img: "https://images.pexels.com/photos/2714581/pexels-photo-2714581.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-    {
-      img: "https://images.pexels.com/photos/2878019/pexels-photo-2878019.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-    },
-    {
-      img: "https://images.pexels.com/photos/1142950/pexels-photo-1142950.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-    {
-      img: "https://images.pexels.com/photos/3124111/pexels-photo-3124111.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
-    },
-  ];
+
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slidesCount = slides.length;
+  const slidesCount = images.length;
 
   const prevSlide = () => {
     setCurrentSlide((s) => (s === 0 ? slidesCount - 1 : s - 1));
@@ -218,6 +197,10 @@ const Test = () => {
 
   const nextSlide = () => {
     setCurrentSlide((s) => (s === slidesCount - 1 ? 0 : s + 1));
+  };
+
+  const setSlide = (slide: number) => {
+    setCurrentSlide(slide);
   };
 
   const carouselStyle = {
@@ -234,10 +217,10 @@ const Test = () => {
       <Flex w="full" overflow="hidden" pos="relative">
         <Flex w="full" {...carouselStyle}>
 
-          {slides.map((slide, sid) => (
+          {images.map((slide, sid) => (
             <Box key={`slide-${sid}`} boxSize="full" shadow="md" flex="none">
               <Image
-                src={slide.img}
+                src={slide}
                 alt="carousel image"
                 boxSize="full"
                 backgroundSize="cover"
@@ -247,6 +230,32 @@ const Test = () => {
         </Flex>
 
 
+        <Box {...arrowStyles} position="absolute" left="0" onClick={prevSlide}>
+          &#10094;
+        </Box>
+        <Box {...arrowStyles} right="0" onClick={nextSlide}>
+          &#10095;
+        </Box>
+        <HStack justify="center" pos="absolute" bottom="8px" w="full">
+          {Array.from({
+            length: slidesCount,
+          }).map((_, slide) => (
+            <Box
+              key={`dots-${slide}`}
+              cursor="pointer"
+              boxSize={["7px", null, "15px"]}
+              m="0 2px"
+              bg={currentSlide === slide ? "blackAlpha.800" : "blackAlpha.500"}
+              rounded="50%"
+              display="inline-block"
+              transition="background-color 0.6s ease"
+              _hover={{
+                bg: "blackAlpha.800",
+              }}
+              onClick={() => setSlide(slide)}
+            ></Box>
+          ))}
+        </HStack>
       </Flex>
     </Flex>
   );

@@ -31,7 +31,7 @@ export const usePayment = () => {
       .then((res) => {
         return res.json()
       })
-      .catch((error) => console.log(error))
+      .catch((error) => { return error })
 
 
   async function handleCheckout() {

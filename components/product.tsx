@@ -1,16 +1,11 @@
 import {
   Box,
   Button,
-  useColorModeValue,
-  Stack,
-  SimpleGrid,
   Text,
-  Image, Heading, Flex
+   Heading, Flex
 } from '@chakra-ui/react';
-
-
 //typescript
-import { IProductCart } from "../typescript"
+import { IProduct } from "../typescript"
 //hooks
 import { CartActions } from "use-shopping-cart"
 import { usePayment } from "../util/hooks/usePayment"
@@ -19,98 +14,23 @@ import NModal from "./modal"
 //function
 import { formatPrice } from "../util/function"
 
-interface IProduct {
-  product: IProductCart
+interface IProductF {
+  product: IProduct
 }
 
-const Product = ({ product }: IProduct) => {
+const Product = ({ product }: IProductF) => {
   const { clearCart, addItem, loadCart, status, handleCheckout, cartDetails, cart } = usePayment()
 
-  return <ProductView2 product={product} addItem={addItem}  />
+  return <ProductView2 product={product} addItem={addItem} />
 }
 
-interface IProductView extends IProduct {
+interface IProductView extends IProductF {
   addItem: CartActions["addItem"]
-
-}
-
-const ProductView = ({ product, addItem }: IProductView) => {
-  const { image, name, price } = product
-  return (
-    <Box
-      role={'group'}
-      p={6}
-      maxW={'330px'}
-      w={'full'}
-      bg={useColorModeValue('white', 'gray.800')}
-      boxShadow={'md'}
-      rounded={'lg'}
-      pos={'relative'}
-      zIndex={1}>
-      <Box
-        rounded={'lg'}
-        mt={-12}
-        pos={'relative'}
-        height={'230px'}
-        _after={{
-          transition: 'all .3s ease',
-          content: '""',
-          w: 'full',
-          h: 'full',
-          pos: 'absolute',
-          top: 2,
-          left: 0,
-          backgroundImage: `url(${image})`,
-          filter: 'blur(15px)',
-          zIndex: -1,
-        }}
-        _groupHover={{
-          _after: {
-            filter: 'blur(20px)',
-          },
-        }}>
-        <Image
-          rounded={'lg'}
-          height={230}
-          width={282}
-          objectFit={'cover'}
-          src={image}
-          alt={product.name}
-        />
-      </Box>
-      <Stack pt={10} align={'center'}>
-        <Text color={'gray.500'} fontSize={'sm'} textTransform={'uppercase'}>
-          Brand
-        </Text>
-        <Heading fontSize={'2xl'} fontFamily={'body'} fontWeight={500}>
-          {name}
-        </Heading>
-        <Stack direction={'row'} align={'center'}>
-          <Text fontWeight={800} fontSize={'xl'}>
-            € {price}
-          </Text>
-        </Stack>
-      </Stack>
-
-      <Button
-        onClick={() => addItem(product)}
-        w={'full'}
-        mt={8}
-        bg={useColorModeValue('blackAlpha.800', 'gray.900')}
-        color={'white'}
-        rounded={'md'}
-        _hover={{
-          transform: 'translateY(-2px)',
-          boxShadow: 'sm',
-        }}>
-        Add to cart
-      </Button>
-    </Box>
-  );
 }
 
 
 const ProductView2 = ({ product, addItem }: IProductView) => {
+  console.log(product)
   const { image, name, price } = product
   return (
     <Flex
@@ -139,7 +59,7 @@ const ProductView2 = ({ product, addItem }: IProductView) => {
           top: 2,
           left: 0,
           zIndex: -1,
-          backgroundImage: `url(${image})`,
+          backgroundImage: `url(${image[0]})`,
           filter: 'blur(15px)',
 
         }}
@@ -150,7 +70,7 @@ const ProductView2 = ({ product, addItem }: IProductView) => {
         }}
         style={{
           backgroundImage:
-            `url(${image})`,
+            `url(${image[0]})`,
         }}
       ></Box>
 
@@ -187,7 +107,6 @@ const ProductView2 = ({ product, addItem }: IProductView) => {
         >
           {name}
         </Heading>
-
 
 
         <Flex
