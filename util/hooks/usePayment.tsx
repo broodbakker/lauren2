@@ -7,7 +7,6 @@ import { useShoppingCart } from "use-shopping-cart"
 export const usePayment = () => {
   const cart = useShoppingCart()
 
-
   const {
     cartDetails,
     cartCount,

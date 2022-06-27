@@ -94,7 +94,7 @@ const NModal = ({ children, product }: IModal) => {
           <ModalFooter>
             <Stack direction={['column', 'row', 'row']} >
 
-              <Link href="/winkelmandje" >
+              <Link href="./winkelmandje" >
                 <a>
                   <Button colorScheme="purple" onClick={handleGoToCart}>Ga door naar de kassa</Button>
                 </a>

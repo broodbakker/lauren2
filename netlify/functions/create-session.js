@@ -22,6 +22,7 @@ const ConvertProductDataForCart = ({ name, id, price, image, currency, descripti
 
 
 exports.handler = async (event) => {
+  console.log("test")
 
   const url = `${process.env.URL}/content/products.json`
 
