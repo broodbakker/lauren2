@@ -83,6 +83,19 @@
       "image": [
         "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l1.jpg"
       ]
+    },
+    {
+      "date": "2022-07-06T10:52:22.565Z",
+      "image": [
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l6.jpg",
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l5.jpg",
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l4.jpg"
+      ],
+      "name": "test paarden",
+      "description": "dit is een paard",
+      "price": 100,
+      "currency": "EUR",
+      "category": "dekjes"
     }
   ],
   "title": "products"
