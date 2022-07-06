@@ -14,8 +14,14 @@ import { FcBusinesswoman, FcHome } from "react-icons/fc"
 import { GiHorseHead } from "react-icons/gi"
 
 export const NUMBER_OF_PRODUCTS_PER_PAGE = 6;
-export const PRODUCT_CATEGORIES =  ["paarden", "stallen", "dekjes"]
+export const PRODUCT_CATEGORIES = ["paarden", "stallen", "dekjes"]
 export const NEWSBAR_LINES = ["this is 1", "and 2", "3", "and last 4"];
+export const DEV_URL = 'http://localhost:8888'
+export const PROD_URL = 'https://laurensite.netlify.app'
+
+const dev = process.env.NODE_ENV !== 'production';
+
+export const url = dev ? DEV_URL : PROD_URL;
 
 
 interface NavItem {

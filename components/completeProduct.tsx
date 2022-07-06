@@ -232,7 +232,7 @@ const Images = ({ images }: Images) => {
         <Box {...arrowStyles} position="absolute" left="0" onClick={prevSlide}>
           &#10094;
         </Box>
-        <Box {...arrowStyles} right="0" onClick={nextSlide}>
+        <Box {...arrowStyles} position="absolute" right="0" onClick={nextSlide}>
           &#10095;
         </Box>
         <HStack justify="center" pos="absolute" bottom="8px" w="full">

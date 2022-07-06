@@ -7,8 +7,10 @@ import HomePage from "../components/template/homepage"
 const Home = () => {
   const products = inventory.products
   return (
-    <HomePage products={products} />
+    <HomePage />
   )
 }
+
+
 
 export default Home

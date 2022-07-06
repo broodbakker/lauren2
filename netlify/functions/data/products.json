@@ -1,18 +1,102 @@
 {
-  "DEMO001": {
-    "sku": "DEMO001",
-    "name": "This Pretty Plant",
-    "description": "Look at this pretty plant. Photo by Galina N on Unsplash.",
-    "images": "https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&w=600&h=600&q=80",
-    "amount": 1000,
-    "currency": "eur"
-  },
-  "DEMO002": {
-    "sku": "DEMO002",
-    "name": "Adventure Mug",
-    "description": "We’re going on an adventure! Photo by Annie Spratt on Unsplash.",
-    "images": "https://images.unsplash.com/photo-1454329001438-1752daa90420?auto=format&fit=crop&w=600&h=600&q=80",
-    "amount": 1500,
-    "currency": "eur"
-  }
+  "products": [
+    {
+      "date": "2022-06-16T09:12:59.713Z",
+      "name": "Touw halster",
+      "id": "tesat",
+      "description": "fsd",
+      "price": 100,
+      "currency": "EUR",
+      "category": "stallen",
+      "image": [
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l2.jpg"
+      ]
+    },
+    {
+      "date": "2022-06-16T09:12:59.713Z",
+      "name": "Touw halster1",
+      "id": "tesdfdssat",
+      "description": "fdfsdsd",
+      "price": 100,
+      "currency": "EUR",
+      "category": "dekjes",
+      "image": [
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l2.jpg"
+      ]
+    },
+    {
+      "date": "2022-06-16T09:13:39.067Z",
+      "name": "Touw halster",
+      "id": "dsf",
+      "description": "df",
+      "price": 299,
+      "currency": "EUR",
+      "category": "paarden",
+      "image": [
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l3.jpg"
+      ]
+    },
+    {
+      "date": "2022-06-16T09:13:39.067Z",
+      "name": "Liksteen",
+      "id": "dsf",
+      "description": "df",
+      "price": 150,
+      "currency": "EUR",
+      "category": "paarden",
+      "image": [
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l6.jpg"
+      ]
+    },
+    {
+      "date": "2022-06-16T09:13:39.067Z",
+      "name": "Plantenbak + coemen",
+      "id": "dsf",
+      "description": "df",
+      "price": 210,
+      "currency": "EUR",
+      "category": "paarden",
+      "image": [
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l4.jpg"
+      ]
+    },
+    {
+      "date": "2022-06-16T09:13:39.067Z",
+      "name": "Cross sprong",
+      "id": "dsf",
+      "description": "df",
+      "price": 350,
+      "currency": "EUR",
+      "category": "paarden",
+      "image": [
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l5.jpg"
+      ]
+    },
+    {
+      "date": "2022-06-16T09:13:39.067Z",
+      "name": "Longeer touw",
+      "id": "dsf",
+      "description": "df",
+      "price": 150,
+      "currency": "EUR",
+      "category": "paarden",
+      "image": [
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l1.jpg"
+      ]
+    },
+    {
+      "date": "2022-07-06T10:52:22.565Z",
+      "image": [
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l6.jpg",
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l5.jpg",
+        "https://res.cloudinary.com/dta9vptzh/image/upload/v1655991494/lauren/l4.jpg"
+      ],
+      "name": "test paarden",
+      "description": "dit is een paard",
+      "price": 100,
+      "currency": "EUR",
+      "category": "dekjes"
+    }
+  ],
+  "title": "products"
 }

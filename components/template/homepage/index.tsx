@@ -10,18 +10,16 @@ import { IProduct } from "../../../typescript"
 import { Box } from '@chakra-ui/react'
 
 interface IHomePage {
-  products: IProduct[]
 }
 
-const HomePage = ({ products }: IHomePage) => {
+const HomePage = () => {
   return (
     <Layout>
       <>
         <HeroHeading />
         <ImageGrid />
-
         <Box my="12">
-          <ProductsAd products={products} />
+          <ProductsAd />
         </Box>
         <WatIkMaak />
       </>
