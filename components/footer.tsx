@@ -27,25 +27,21 @@ interface NavItem1 {
 }
 
 const NAV_ITEMS: Array<NavItem> = [
-
   {
     label: 'Thuis',
     href: "/"
   },
   {
     label: 'Mijn winkel',
-    href: "winkel"
+    href: "winkel/paarden/1"
   },
   {
     label: 'Over Mij',
     href: "/over-mij"
   },
-
 ];
 
-
-
-const Logo = (props: any) => {
+const Logo = () => {
   return (
     <NextLink href="/">
       <a>
@@ -105,9 +101,7 @@ export default function SmallCentered() {
         align={'center'}>
         <Logo />
         <Stack direction={'row'} spacing={6}>
-
           {NAV_ITEMS.map((item, index) => <Link key={index} href={item.href}>{item.label}</Link>)}
-
         </Stack>
       </Container>
 

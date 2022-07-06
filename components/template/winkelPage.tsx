@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 import { Layout } from "../layout"
 //style
 import {
-  Box
+  Box, Center
 } from '@chakra-ui/react';
 
 import { IProduct } from "../../typescript"
@@ -33,7 +33,6 @@ interface Ie {
   value: string
 }
 
-
 interface IWinkelPage {
   products: IProduct[]
   category: string
@@ -43,16 +42,13 @@ const WinkelPage = ({ products, category }: IWinkelPage) => {
   const router = useRouter()
 
   const handleChange = (e: any) => {
-    router.push(`/w/${e.value}`)
-
+    router.push(`/winkel/${e.value}/1`)
   }
 
-  console.log("winkelpage", products)
   return (
-
     <Layout>
       <>
-        <Box alignItems='center'>
+        <Center alignItems='center'>
           <Box pt="10rem" w="sm">
             <Select
               defaultValue={{ label: category, value: category }}
@@ -61,28 +57,14 @@ const WinkelPage = ({ products, category }: IWinkelPage) => {
               onChange={handleChange}
             />
           </Box>
-        </Box>
-
+        </Center>
 
         <Box mb="8">
           <Pagination products={products} />
         </Box>
-
-        <Main />
-
       </>
     </Layout>
   )
-
 }
-
-const Main = () => {
-  return (
-    <Box />
-  )
-}
-
-
-
 
 export default WinkelPage

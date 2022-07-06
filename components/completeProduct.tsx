@@ -172,7 +172,6 @@ interface Images {
 const Images = ({ images }: Images) => {
   const arrowStyles = {
     cursor: "pointer",
-
     top: "50%",
     width: "auto",
     mt: "-22px",

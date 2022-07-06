@@ -1,12 +1,9 @@
 import React from 'react'
-import  OvermijPage  from "../components/template/OvermijPage"
+import OvermijPage from "../components/template/overMijPage"
+
 const Overmij = () => {
-
-
   return (
-    <div>
       <OvermijPage />
-    </div>
   )
 }
 

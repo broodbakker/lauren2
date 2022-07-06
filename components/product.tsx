@@ -2,7 +2,7 @@ import {
   Box,
   Button,
   Text,
-   Heading, Flex
+  Heading, Flex
 } from '@chakra-ui/react';
 //typescript
 import { IProduct } from "../typescript"
@@ -30,7 +30,6 @@ interface IProductView extends IProductF {
 
 
 const ProductView2 = ({ product, addItem }: IProductView) => {
-  console.log(product)
   const { image, name, price } = product
   return (
     <Flex

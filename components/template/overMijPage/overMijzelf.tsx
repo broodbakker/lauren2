@@ -56,7 +56,7 @@ const Feature = ({ text, icon, iconBg }: FeatureProps) => {
   );
 };
 
-export default function Features() {
+export const Overmijzelf = () => {
   return (
     <Container maxW={'5xl'} py={4}>
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>

@@ -27,3 +27,18 @@ export interface IAuthContext {
   logout: () => void,
   authReady: boolean
 }
+
+export interface NavItem {
+  label: string;
+  subLabel?: string;
+  children?: Array<NavItem1>;
+  href?: string;
+  icon: any
+}
+
+export interface NavItem1 {
+  label: string;
+  subLabel?: string;
+  href: string;
+  icon: any
+}

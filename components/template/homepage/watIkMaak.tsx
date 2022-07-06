@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { useRouter } from 'next/router'
 
 import {
   Button,
@@ -12,6 +13,7 @@ import {
 } from '@chakra-ui/react';
 
 export default function SplitScreen() {
+  const router = useRouter()
   return (
     <Stack minH={'50vh'} direction={{ base: 'column', md: 'row' }}>
       <Flex p={8} flex={1} align={'center'} justify={'center'} bg="purple.50">
@@ -47,7 +49,9 @@ export default function SplitScreen() {
               color={'white'}
               _hover={{
                 bg: 'purple.500',
-              }}>
+              }}
+              onClick={() => router.push('./winkel/paarden/1')}
+            >
               wat ik allemaal verkoop
             </Button>
             <Button rounded={'full'}>Hoe ik het maak</Button>
@@ -55,7 +59,7 @@ export default function SplitScreen() {
         </Stack>
       </Flex>
       <Flex flex={1}>
-        <Carousel/>
+        <Carousel />
       </Flex>
     </Stack>
   );

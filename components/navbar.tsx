@@ -1,11 +1,14 @@
 import { default as NextLink } from 'next/link'
 //components
-import { CartModal } from "./cartModal"
+import { CartButton } from "./cartButton"
 import { TextAnimation } from "./animation/textAnimation"
 //hooks
 import { useAuth } from "../util/hooks/useAuth"
 //typescript
-import { IAuthContext } from "../typescript"
+import { IAuthContext,NavItem,NavItem1 } from "../typescript"
+
+
+
 //style
 import {
   Box,
@@ -34,11 +37,7 @@ import {
 
 import { IoHome } from "react-icons/io5";
 
-import { ImGift } from "react-icons/im";
-
-import { FcBusinesswoman, FcHome } from "react-icons/fc"
-
-import { GiHorseHead } from "react-icons/gi"
+import { NAV_ITEMS, NEWSBAR_LINES } from "../util/constants"
 
 
 export const Navbar = () => {
@@ -47,20 +46,10 @@ export const Navbar = () => {
   return (<NavbarView auth={auth} />)
 }
 
-
-const NEWSBAR_LINES = ["this is 1", "and 2", "3", "and last 4"];
-
 interface INavbarView {
   auth: IAuthContext
 }
-export const NavbarView = ({ auth }: INavbarView) => {
-  const {
-    authReady,
-    user,
-    login,
-    logout,
-  } = auth;
-
+const NavbarView = ({ auth }: INavbarView) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -98,7 +87,6 @@ export const NavbarView = ({ auth }: INavbarView) => {
 
           <NextLink href="/">
             <a>
-
               <Button
                 display={{ base: 'none', md: 'inline-flex' }}
                 fontSize={'sm'}
@@ -106,14 +94,6 @@ export const NavbarView = ({ auth }: INavbarView) => {
                 colorScheme="purple"
                 variant='ghost'>
                 <HStack>
-                  {/* <Text
-                textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-                fontFamily={'heading'}
-                cursor="pointer"
-                color={useColorModeValue('gray.800', 'white')}>
-                Lauren schleich
-              </Text> */}
-
                   <Image
                     borderRadius='full'
                     boxSize='40px'
@@ -136,70 +116,7 @@ export const NavbarView = ({ auth }: INavbarView) => {
           justify={'flex-end'}
           direction={'row'}
           spacing={6}>
-
-          <CartModal />
-          {/* {authReady &&
-            <>
-              {!user && <>
-                <Button
-                  as={'a'}
-                  fontSize={'sm'}
-                  fontWeight={400}
-
-                  onClick={login}
-                  href={'#'}>
-                  Log In
-                </Button>
-                <Button
-                  display={{ base: 'none', md: 'inline-flex' }}
-                  fontSize={'sm'}
-                  fontWeight={600}
-                  color={'white'}
-                  bg={'pink.400'}
-                  onClick={login}
-                  _hover={{
-                    bg: 'pink.300',
-                  }}>
-                  Sign Up
-                </Button>
-              </>}
-              {user &&
-                <>
-                  <NextLink href="/admin">
-                    <a>
-                      <Button
-                        display={{ base: 'none', md: 'inline-flex' }}
-                        fontSize={'sm'}
-                        fontWeight={600}
-                        color={'white'}
-                        bg={'pink.400'}
-                        _hover={{
-                          bg: 'pink.300',
-                        }}>
-                        add Products
-                      </Button>
-                    </a>
-                  </NextLink>
-
-                  <Button
-                    display={{ base: 'none', md: 'inline-flex' }}
-                    fontSize={'sm'}
-                    fontWeight={600}
-                    color={'white'}
-                    bg={'pink.400'}
-                    onClick={logout}
-                    _hover={{
-                      bg: 'pink.300',
-                    }}>
-                    log out
-                  </Button>
-                </>
-              }
-
-            </>
-          } */}
-
-
+          <CartButton />
         </Stack>
       </Flex>
 
@@ -246,9 +163,6 @@ const DesktopNav = () => {
                 >
                   {navItem.label}
                 </Button>
-
-
-
               }
 
             </PopoverTrigger>
@@ -287,12 +201,12 @@ const DesktopSubNav = ({ label, href, subLabel, icon }: NavItem1) => {
         <Stack direction={'row'} align={'center'}>
           <Box>
 
-            <HStack  transition={'all .3s ease'}
+            <HStack transition={'all .3s ease'}
               _groupHover={{ color: 'pink.400' }}>
-          {icon}
-            <Text  fontWeight={500}>
-            {label}
-            </Text>
+              {icon}
+              <Text fontWeight={500}>
+                {label}
+              </Text>
             </HStack>
             <Text fontSize={'sm'}>{subLabel}</Text>
           </Box>
@@ -388,58 +302,4 @@ const MobileNavItem = ({ label, children, href }: NavItem) => {
     </Stack>
   );
 };
-
-interface NavItem {
-  label: string;
-  subLabel?: string;
-  children?: Array<NavItem1>;
-  href?: string;
-  icon: any
-}
-
-interface NavItem1 {
-  label: string;
-  subLabel?: string;
-  href: string;
-  icon: any
-}
-
-const NAV_ITEMS: Array<NavItem> = [
-  {
-    label: 'Thuis',
-    href: "/",
-    icon: <FcHome />
-  },
-  {
-    label: 'Mijn winkel',
-    icon: <ImGift />,
-    children: [
-      {
-        label: 'Paarden',
-        subLabel: 'Alle paarden',
-        href: '/w/paarden',
-        icon: <GiHorseHead />
-      },
-      {
-        label: 'Dekjes',
-        subLabel: 'Alle dekjes',
-        href: '/w/dekjes',
-        icon: <IoHome />
-      },
-      {
-        label: 'pony',
-        subLabel: 'Alle sprongen',
-        href: '/w/stallen',
-        icon: <IoHome />
-      },
-
-    ],
-  },
-  {
-    label: 'Over Mij',
-    href: "/over-mij",
-    icon: <FcBusinesswoman />
-  },
-
-];
 

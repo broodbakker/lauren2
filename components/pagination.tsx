@@ -17,18 +17,15 @@ import {
   PaginationContainer,
   PaginationSeparator
 } from "@ajna/pagination";
-
 import { Products } from "./products"
+import { NUMBER_OF_PRODUCTS_PER_PAGE } from "../util/constants"
 
 interface IPagination {
   products: IProduct[]
 }
 
 export const Pagination = ({ products }: IPagination) => {
-
-  console.log("products", products)
   const router = useRouter()
-
   // constants
   const outerLimit = 2;
   const innerLimit = 2;
@@ -39,10 +36,8 @@ export const Pagination = ({ products }: IPagination) => {
     offset,
     currentPage,
     setCurrentPage,
-    setIsDisabled,
     isDisabled,
     pageSize,
-    setPageSize
   } = usePagination({
     total: products.length,
     limits: {
@@ -50,7 +45,7 @@ export const Pagination = ({ products }: IPagination) => {
       inner: innerLimit
     },
     initialState: {
-      pageSize: 1,
+      pageSize: NUMBER_OF_PRODUCTS_PER_PAGE,
       isDisabled: false,
       currentPage: 1
     }
@@ -62,10 +57,7 @@ export const Pagination = ({ products }: IPagination) => {
   const handlePageChange = (nextPage: number): void => {
     // -> request new data using the page number
     setCurrentPage(nextPage);
-
     router.push(`/w/${products[0].category}/${nextPage}`)
-
-
   };
   return (
     <ChakraProvider>
