@@ -26,25 +26,25 @@ export const getProductsByCategory = (products: IProduct[], category: string) =>
 
 export const getPaths = (numberOfProductPerPage: number, category: string[], products: IProduct[]) => {
 
-    const t1 = category.map((c) => {
-      const test = Math.ceil(getNumberOfProducts(products, c) / numberOfProductPerPage)
+  const t1 = category.map((c) => {
+    const test = Math.ceil(getNumberOfProducts(products, c) / numberOfProductPerPage)
 
-      return getSubjectPath(c, test)
-    })
+    return getSubjectPath(c, test)
+  })
 
-    return t1.flat()
+  return t1.flat()
 
+}
+
+const convertNumberToArray = (num: number) => Array.from(Array(num).keys())
+
+const getNumberOfProducts = (products: IProduct[], category: string) => products.filter((product) =>
+  product.category === category).length
+
+
+const getSubjectPath = (category: string, test: number) => convertNumberToArray(test).map((arr: number) => ({
+  params: {
+    category,
+    id: (arr + 1).toString(),
   }
-
-  const convertNumberToArray = (num: number) => Array.from(Array(num).keys())
-
-  const getNumberOfProducts = (products: IProduct[], category: string) => products.filter((product) =>
-    product.category === category).length
-
-
-    const getSubjectPath = (category: string, test: number) => convertNumberToArray(test).map((arr: number) => ({
-      params: {
-        category,
-        id: (arr + 1).toString(),
-      }
-    }))
+}))

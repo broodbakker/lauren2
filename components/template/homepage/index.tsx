@@ -4,8 +4,6 @@ import { ImageGrid } from "./imageGrid"
 import { ProductsAd } from './productsAd'
 import WatIkMaak from "./watIkMaak"
 import { Layout } from "../../layout"
-//typescript
-import { IProduct } from "../../../typescript"
 
 import { Box } from '@chakra-ui/react'
 

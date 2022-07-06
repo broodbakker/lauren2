@@ -20,6 +20,7 @@ const ConvertProductDataForCart = ({ name, id, price, image, currency, descripti
   image: image[0],
 })
 
+const products = require('./data/products.json');
 
 exports.handler = async (event) => {
 
