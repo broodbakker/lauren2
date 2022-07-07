@@ -18,8 +18,8 @@ const url = dev ? DEV_URL : PROD_URL;
 
 const d = "http://localhost:8888"
 
+const completeUrl = `${process.env.URL}/.netlify/functions/get-products`
 
-const completeUrl = `${url}/.netlify/functions/get-products`
 
 export const fetchProducts = () => fetch(completeUrl)
   .then((res) => {
