@@ -1,7 +1,6 @@
 import netlifyIdentity from "netlify-identity-widget"
-const axios = require("axios")
 
-import { DEV_URL,PROD_URL } from './constants'
+import { DEV_URL, PROD_URL } from './constants'
 
 export const fetchPayment = (data: any[]) => fetch("/.netlify/functions/stripe", {
   method: 'POST',
@@ -17,10 +16,16 @@ const dev = process.env.NODE_ENV !== 'production';
 
 const url = dev ? DEV_URL : PROD_URL;
 
+const d = "http://localhost:8888"
+
+
 const completeUrl = `${url}/.netlify/functions/get-products`
 
 export const fetchProducts = () => fetch(completeUrl)
-  .then((res) => res.json())
+  .then((res) => {
+    console.log("res", res)
+    return res.json()
+  })
 
 export const FetchUser = (user: null | netlifyIdentity.User) => fetch("/.netlify/functions/user", {
   headers: {

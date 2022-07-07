@@ -21,6 +21,8 @@ const fakeData = {
 export const ProductsAd = () => {
   const [value, setValue] = useState<IProduct[]>([fakeData])
 
+  console.log(value)
+
   useEffect(() => {
     fetchProducts().then((products) => setValue(products.products));
   }, [])

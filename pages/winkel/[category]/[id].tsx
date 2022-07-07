@@ -1,14 +1,14 @@
 
 import React from 'react'
-import WinkelPage from "../../components/template/winkelPage"
+import WinkelPage from "../../../components/template/winkelPage"
 //functions
-import { getProductsByCategory, getPaths } from "../../util/function"
+import { getProductsByCategory, getPaths } from "../../../util/function"
 //typescript
-import { IProduct } from "../../typescript"
+import { IProduct } from "../../../typescript"
 //contstants
-import { NUMBER_OF_PRODUCTS_PER_PAGE, PRODUCT_CATEGORIES } from "../../util/constants"
+import { NUMBER_OF_PRODUCTS_PER_PAGE, PRODUCT_CATEGORIES } from "../../../util/constants"
 
-import { fetchProducts } from "../../util/api"
+import { fetchProducts } from "../../../util/api"
 
 interface IW {
   products: IProduct[]
@@ -23,6 +23,8 @@ const Winkel = ({ products, category }: IW) => {
 
 export async function getStaticPaths() {
 
+  console.log("process", process.env)
+  console.log("process1", process.env.URL)
   const products = await fetchProducts()
 
   const paths = getPaths(NUMBER_OF_PRODUCTS_PER_PAGE, PRODUCT_CATEGORIES, products.products)
@@ -43,7 +45,7 @@ export async function getStaticProps({ params: { category, id } }: Params) {
 
   const products = getProductsByCategory(allProducts.products, category)
 
-  return { props: { products: products, category } }
+  return { props: { products, category } }
 }
 
 export default Winkel
